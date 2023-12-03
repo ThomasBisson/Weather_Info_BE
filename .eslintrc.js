@@ -30,7 +30,6 @@ module.exports = {
     'arrow-body-style': ['error', 'as-needed', { 'requireReturnForObjectLiteral': true }],
     'block-scoped-var': 'error',
     'camelcase': ['error'],
-    'capitalized-comments': ['error', 'always'],
     'dot-notation': 'error',
     'eqeqeq': ['error', 'smart'],
     'func-style': ['error', 'expression', { 'allowArrowFunctions': true }],
@@ -50,7 +49,7 @@ module.exports = {
 
     // Stylistic
     '@stylistic/js/array-bracket-newline': ['error', { 'multiline': true }],
-    '@stylistic/js/array-bracket-spacing': ['error', 'always'],
+    '@stylistic/js/array-bracket-spacing': ['error', 'never'],
     '@stylistic/js/arrow-parens': ['error', 'always'],
     '@stylistic/js/arrow-spacing': 'error',
     '@stylistic/js/block-spacing': 'error',
