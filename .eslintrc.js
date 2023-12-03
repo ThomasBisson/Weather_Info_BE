@@ -46,7 +46,7 @@ module.exports = {
     'prefer-const': 'error',
     'prefer-object-spread': 'error',
     'require-await': 'error',
-    'sort-imports': 'error',
+    'sort-imports': ['error', { 'allowSeparatedGroups': true }],
 
     // Stylistic
     '@stylistic/js/array-bracket-newline': ['error', { 'multiline': true }],
