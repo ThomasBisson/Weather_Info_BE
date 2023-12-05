@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Forecast controller return value for memphis 1`] = `
+{
+  "avgWindBeaufortScale": "Gentle Breeze",
+  "generalTrend": "stable",
+  "pressureTrend": "stable",
+  "temperatureTrend": "stable",
+}
+`;
+
+exports[`Forecast controller return value for paris 1`] = `
+{
+  "avgWindBeaufortScale": "Gentle Breeze",
+  "generalTrend": "improving",
+  "pressureTrend": "falling",
+  "temperatureTrend": "rising",
+}
+`;
+
+exports[`Forecast controller return value for sydney 1`] = `
+{
+  "avgWindBeaufortScale": "Light Breeze",
+  "generalTrend": "stable",
+  "pressureTrend": "rising",
+  "temperatureTrend": "stable",
+}
+`;
+
+exports[`Forecast controller return value for toulouse 1`] = `
+{
+  "avgWindBeaufortScale": "Gentle Breeze",
+  "generalTrend": "improving",
+  "pressureTrend": "falling",
+  "temperatureTrend": "rising",
+}
+`;

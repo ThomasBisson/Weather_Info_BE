@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import WeatherInfoError from './weatherInfoError';
+import WeatherInfoError from './weatherInfoError.util';
 
 export const readMockJsonFile = (fileName: string, mockFolder: 'current' | 'forecast'): {} => {
 	const mockPath = path.join(__dirname, '..', '..', 'resources', 'mock', 'weatherbit_api', mockFolder);

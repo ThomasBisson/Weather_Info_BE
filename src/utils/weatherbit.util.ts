@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-export const getCurrentWeatherDataFromApi = async (city: string): Promise<{}> => {
-	const result = await axios.get('current', {
+import { WeatherbitCurrentData, WeatherbitCurrentResponse, WeatherbitForecastData, WeatherbitForecastResponse } from '../types/weatherbit.type';
+
+export const getCurrentWeatherDataFromApi = async (city: string): Promise<WeatherbitCurrentData[]> => {
+	const result = await axios.get<WeatherbitCurrentResponse>('current', {
 		baseURL: process.env.WEATHERBIT_URL,
 		params: {
 			key: process.env.WEATHERBIT_KEY,
@@ -13,8 +15,8 @@ export const getCurrentWeatherDataFromApi = async (city: string): Promise<{}> =>
 	return result.data.data;
 };
 
-export const getForecastWeatherDataFromApi = async (city: string): Promise<{}> => {
-	const result = await axios.get('forecast/daily', {
+export const getForecastWeatherDataFromApi = async (city: string): Promise<WeatherbitForecastData[]> => {
+	const result = await axios.get<WeatherbitForecastResponse>('forecast/daily', {
 		baseURL: process.env.WEATHERBIT_URL,
 		params: {
 			key: process.env.WEATHERBIT_KEY,
@@ -23,5 +25,6 @@ export const getForecastWeatherDataFromApi = async (city: string): Promise<{}> =
 			city,
 		},
 	});
+
 	return result.data.data;
 };

@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Integration /weather/current return status 200 and result is OK for memphis 1`] = `
+{
+  "US_TN": {
+    "description": "Few clouds",
+    "relativeHumidity": 94,
+    "temperature": 10.1,
+    "windSpeed": 9.251999999999999,
+  },
+}
+`;
+
+exports[`Integration /weather/current return status 200 and result is OK for paris 1`] = `
+{
+  "FR_11": {
+    "description": "Scattered clouds",
+    "relativeHumidity": 70,
+    "temperature": 3.3,
+    "windSpeed": 12.96,
+  },
+}
+`;
+
+exports[`Integration /weather/current return status 200 and result is OK for sydney 1`] = `
+{
+  "AU_02": {
+    "description": "Scattered clouds",
+    "relativeHumidity": 78,
+    "temperature": 19.4,
+    "windSpeed": 12.96,
+  },
+}
+`;
+
+exports[`Integration /weather/current return status 200 and result is OK for toulouse 1`] = `
+{
+  "FR_76": {
+    "description": "Few clouds",
+    "relativeHumidity": 39,
+    "temperature": 9,
+    "windSpeed": 16.56,
+  },
+}
+`;

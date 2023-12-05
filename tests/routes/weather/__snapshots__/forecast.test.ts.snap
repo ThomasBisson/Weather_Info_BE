@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Integration /weather/forecast return status 200 and result is OK for memphis 1`] = `
+{
+  "avgWindBeaufortScale": "Gentle Breeze",
+  "generalTrend": "stable",
+  "pressureTrend": "stable",
+  "temperatureTrend": "stable",
+}
+`;
+
+exports[`Integration /weather/forecast return status 200 and result is OK for paris 1`] = `
+{
+  "avgWindBeaufortScale": "Gentle Breeze",
+  "generalTrend": "improving",
+  "pressureTrend": "falling",
+  "temperatureTrend": "rising",
+}
+`;
+
+exports[`Integration /weather/forecast return status 200 and result is OK for sydney 1`] = `
+{
+  "avgWindBeaufortScale": "Light Breeze",
+  "generalTrend": "stable",
+  "pressureTrend": "rising",
+  "temperatureTrend": "stable",
+}
+`;
+
+exports[`Integration /weather/forecast return status 200 and result is OK for toulouse 1`] = `
+{
+  "avgWindBeaufortScale": "Gentle Breeze",
+  "generalTrend": "improving",
+  "pressureTrend": "falling",
+  "temperatureTrend": "rising",
+}
+`;

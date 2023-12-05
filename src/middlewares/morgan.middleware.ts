@@ -1,6 +1,6 @@
 import morgan from 'morgan';
 
-import logger from '../utils/logger';
+import logger from '../utils/logger.util';
 
 const stream = {
 	write: (message: string) => logger.http(message),
@@ -8,7 +8,7 @@ const stream = {
 
 const skip = () => {
 	const env = process.env.NODE_ENV || 'development';
-	return env !== 'development';
+	return env === 'test';
 };
 
 const morganMiddleware = morgan(
