@@ -17,25 +17,26 @@ pipeline {
                     reuseNode true
                 }
             }
-        
-            stage('Setup') {
-                steps {
-                    echo 'Setup..'
-                    sh 'npm i'
+            stages {
+                stage('Setup') {
+                    steps {
+                        echo 'Setup..'
+                        sh 'npm i'
+                    }
                 }
-            }
-            stage('Test') {
-                steps {
-                    echo 'Testing..'
-                    sh 'npm run test'
+                stage('Test') {
+                    steps {
+                        echo 'Testing..'
+                        sh 'npm run test'
+                    }
                 }
-            }
-            stage('Build') {
-                steps {
-                    echo 'Building...'
-                    sh 'npm run build'
-                    sh 'pwd'
-                    sh 'ls'
+                stage('Build') {
+                    steps {
+                        echo 'Building...'
+                        sh 'npm run build'
+                        sh 'pwd'
+                        sh 'ls'
+                    }
                 }
             }
         }
