@@ -1,4 +1,4 @@
-# Weather_Info_BE
+# Weather-info-be
 The backend of the weather info web application. This application is made as a test for me by the Stack Labs company.
 
 ## How to install the project in local
