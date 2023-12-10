@@ -8,7 +8,7 @@ pipeline {
 	parameters {
 		choice(name: 'DEPLOY_ENV', choices: ['dev', 'prod'], description: 'Choose the environment to deploy')
 	}
-    stages {}
+    stages {
         stage ('Node') {
             agent {
                 docker {
