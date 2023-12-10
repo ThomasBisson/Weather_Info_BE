@@ -1,8 +1,7 @@
 pipeline {
     agent {
 		docker {
-            image 'node:20.10.0-alpine3.18' 
-            args '-p 3000:3000' 
+            image 'node:20.10.0-alpine3.18'
         }
     }
 	environment {
@@ -36,7 +35,7 @@ pipeline {
             steps {
                 echo 'Deploying....'
 				sh 'zip dist/index.zip dist/index.js'
-				aws lambda update-function-code --function-name  "weather-info-api-${params.DEPLOY_ENV}" --zip-file dist/index.zip
+				sh "aws lambda update-function-code --function-name \"weather-info-api-${params.DEPLOY_ENV}\" --zip-file \"dist/index.zip\""
             }
         }
     }

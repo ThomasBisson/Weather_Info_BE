@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-	entry: './src/index.ts',
+	entry: './src/index-serverless.ts',
 	module: {
 		rules: [
 			{
@@ -15,7 +15,8 @@ module.exports = {
 		extensions: ['.ts', '.js'],
 	},
 	output: {
-		filename: 'bundle.js',
+		filename: 'index.js',
+		library: { type: 'commonjs2' },
 		path: path.resolve(__dirname, 'dist'),
 	},
 	target: 'node',

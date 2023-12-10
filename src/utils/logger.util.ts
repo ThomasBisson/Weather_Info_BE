@@ -21,7 +21,9 @@ const colors = {
 	http: 'magenta',
 	debug: 'white',
 };
-winston.addColors(colors);
+if (process.env.NODE_ENV === 'development') {
+	winston.addColors(colors);
+}
 
 const consoleFormat = winston.format.combine(
 	winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }),
@@ -32,31 +34,46 @@ const consoleFormat = winston.format.combine(
 const fileFormat = winston.format.combine(winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss:ms' }), winston.format.json());
 
 /* eslint-disable */
-const transports =
-	process.env.NODE_ENV === 'test'
-		? []
-		: [
-			new winston.transports.Console({
-				format: consoleFormat,
-			}),
-			new winston.transports.File({
-				filename: 'logs/error.log',
-				level: 'error',
-				format: fileFormat,
-				eol: ',',
-			}),
-			new winston.transports.File({
-				filename: 'logs/all.log',
-				format: fileFormat,
-				eol: ',',
-			}),
-		];
+const getTransports = (): winston.transport[] => {
+	switch(process.env.NODE_ENV) {
+		case 'test': return [];
+		case 'development':
+			return [
+				new winston.transports.Console({
+					format: consoleFormat,
+				}),
+				new winston.transports.File({
+					filename: 'logs/error.log',
+					level: 'error',
+					format: fileFormat,
+					eol: ',',
+				}),
+				new winston.transports.File({
+					filename: 'logs/all.log',
+					format: fileFormat,
+					eol: ',',
+				}),
+			];
+		case 'production':
+			return [
+				new winston.transports.Console({
+					format: consoleFormat,
+				}),
+			];
+		default:
+			return [
+				new winston.transports.Console({
+					format: consoleFormat,
+				}),
+			];
+	}
+}
 /* eslint-enable */
 
 const logger = winston.createLogger({
 	level: level(),
 	levels,
-	transports,
+	transports: getTransports(),
 });
 
 export default logger;
