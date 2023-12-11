@@ -42,7 +42,7 @@ pipeline {
                 echo 'Deploying....'
                 unstash 'lambda'
 				sh 'zip index.zip dist/index.js'
-				sh "aws lambda update-function-code --function-name \"weather-info-api-${params.DEPLOY_ENV}\" --zip-file \"fileb:index.zip\""
+				sh "aws lambda update-function-code --function-name \"weather-info-api-${params.DEPLOY_ENV}\" --zip-file \"fileb://index.zip\""
                 sh 'rm -R dist'
                 sh 'rm index.zip'
             }
