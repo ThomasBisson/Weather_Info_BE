@@ -32,8 +32,9 @@ pipeline {
                     steps {
                         echo 'Building...'
                         sh 'npm run build'
-                        sh 'cd dist'
-                        stash name: 'lambda', includes: 'index.js'
+                        sh 'pwd'
+                        sh 'ls -l'
+                        stash includes: 'dist/index.js', name: 'lambda'
                     }
                 }
             }
@@ -41,7 +42,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
+                sh 'pwd'
+                sh 'ls -l'
                 unstash 'lambda'
+                sh 'ls -l'
 				sh 'zip index.zip index.js'
 				sh "aws lambda update-function-code --function-name \"weather-info-api-${params.DEPLOY_ENV}\" --zip-file \"index.zip\""
             }
