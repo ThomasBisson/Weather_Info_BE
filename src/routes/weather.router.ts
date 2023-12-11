@@ -1,3 +1,4 @@
+import { ValidationError, object, string } from 'yup';
 import express, { NextFunction, Request, Response } from 'express';
 
 import currentWeatherController from '../controllers/weather/current.controller';
@@ -6,6 +7,10 @@ import forecastWeatherController from '../controllers/weather/forecast.controlle
 import logger from '../utils/logger.util';
 
 const router = express.Router();
+
+const currentSchema = object({
+	city: string().trim().required(),
+});
 
 /**
  * @swagger
@@ -41,18 +46,21 @@ const router = express.Router();
  */
 router.get('/current', async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// TODO : Better handling of query params
-		const city: string | undefined = req.query.city as string | undefined;
-		if (!city) {
-			logger.error('You need to fill the city query parameter');
-			res.status(400).json({ error: 'You need to fill the city query parameter' });
-			return;
-		}
-		const result = await currentWeatherController(city);
+		const queryParams = await currentSchema.validate(req.query);
+		const result = await currentWeatherController(queryParams.city);
 		res.json(result);
 	} catch (err) {
-		next(err);
+		if (err instanceof ValidationError) {
+			logger.error(err.message);
+			res.status(400).json({ error: err.message });
+		} else {
+			next(err);
+		}
 	}
+});
+
+const forecastSchema = object({
+	city: string().trim().required(),
 });
 
 /**
@@ -92,17 +100,16 @@ router.get('/current', async (req: Request, res: Response, next: NextFunction) =
  */
 router.get('/forecast', async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		// TODO : Better handling of query params
-		const city: string | undefined = req.query.city as string | undefined;
-		if (!city) {
-			logger.error('You need to fill the city query parameter');
-			res.status(400).json({ error: 'You need to fill the city query parameter' });
-			return;
-		}
-		const result = await forecastWeatherController(city);
+		const queryParams = await forecastSchema.validate(req.query);
+		const result = await forecastWeatherController(queryParams.city);
 		res.json(result);
 	} catch (err) {
-		next(err);
+		if (err instanceof ValidationError) {
+			logger.error(err.message);
+			res.status(400).json({ error: err.message });
+		} else {
+			next(err);
+		}
 	}
 });
 

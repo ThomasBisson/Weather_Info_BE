@@ -5,7 +5,7 @@
     "node_modules/**/node_modules"
   ],
   "verbose": true,
-  "exec": "ts-node ./src/index.ts",
+  "exec": "ts-node ./src/index-local.ts",
   "watch": "src/**/*.ts",
   "env": {
     "NODE_ENV": "development"

@@ -7,8 +7,6 @@ dotenv.config();
 
 const port = process.env.PORT || 6000;
 
-if (process.env.NODE_ENV === 'development') {
-	app.listen(port, () => {
-		logger.info(`Server is running at http://localhost:${port}`);
-	});
-}
+app.listen(port, () => {
+	logger.info(`Server is running at http://localhost:${port}`);
+});
