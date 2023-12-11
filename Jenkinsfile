@@ -13,8 +13,6 @@ pipeline {
             agent {
                 docker {
                     image 'node:20.10.0-alpine3.18'
-                    args '--name node20'
-                    reuseNode true
                 }
             }
             stages {
@@ -34,8 +32,8 @@ pipeline {
                     steps {
                         echo 'Building...'
                         sh 'npm run build'
-                        sh 'pwd'
-                        sh 'ls'
+                        sh 'cd dist'
+                        stash 'lambda', includes: 'index.js'
                     }
                 }
             }
@@ -43,7 +41,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
-                sh 'docker cp node20:/var/jenkins_home/workspace/weather-info-be_main/dist/index.js index.js'
+                unstash 'lambda'
 				sh 'zip index.zip index.js'
 				sh "aws lambda update-function-code --function-name \"weather-info-api-${params.DEPLOY_ENV}\" --zip-file \"index.zip\""
             }
