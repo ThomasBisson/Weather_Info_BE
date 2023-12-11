@@ -33,7 +33,7 @@ pipeline {
                         echo 'Building...'
                         sh 'npm run build'
                         sh 'cd dist'
-                        stash 'lambda', includes: 'index.js'
+                        stash name: 'lambda', includes: 'index.js'
                     }
                 }
             }
